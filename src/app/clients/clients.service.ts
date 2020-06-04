@@ -16,6 +16,18 @@ export class ClientsService {
    */
   constructor(private http: HttpClient) { }
 
+  getFilteredClients(orderBy: string, sortOrder: string, orphansOnly: boolean, displayName: string, officeId: any): Observable<any> {
+    let httpParams = new HttpParams()
+      .set('displayName', displayName)
+      .set('orphansOnly', orphansOnly.toString())
+      .set('sortOrder', sortOrder)
+      .set('orderBy', orderBy);
+    if (officeId) {
+      httpParams = httpParams.set('officeId', officeId);
+    }
+    return this.http.get('/clients', { params: httpParams });
+  }
+
   getClients(orderBy: string, sortOrder: string, offset: number, limit: number): Observable<any> {
     const httpParams = new HttpParams()
       .set('offset', offset.toString())
@@ -73,6 +85,14 @@ export class ClientsService {
   waiveClientCharge(chargeData: any) {
     const httpParams = new HttpParams().set('command', 'waive');
     return this.http.post(`/clients/${chargeData.clientId}/charges/${chargeData.resourceType}`, chargeData, { params: httpParams });
+  }
+
+  /**
+   * Get All Client Cgarges.
+   * @param clientId Client Id of the user.
+   */
+  getAllClientCharges(clientId: string) {
+    return this.http.get(`/clients/${clientId}/charges`);
   }
 
   getClientSummary(clientId: string) {

@@ -3,6 +3,8 @@
 @import '../../app/clients/clients-view/clients-view.component-theme.scss';
 @import '../../app/groups/groups-view/groups-view.component-theme.scss';
 @import '../../app/centers/centers-view/centers-view.component-theme.scss';
+@import '../../app/home/dashboard/dashboard.component-theme.scss';
+@import '../../app/loans/loans-view/loans-view.component-theme.scss';
 
 // Custom material palette
 $mat-picton-blue: (
@@ -51,3 +53,5 @@ $mifosx-app-theme: mat-light-theme($mifosx-app-primary, $mifosx-app-accent, $mif
 @include clients-view-component-theme($mifosx-app-theme);
 @include groups-view-component-theme($mifosx-app-theme);
 @include centers-view-component-theme($mifosx-app-theme);
+@include dashboard-component-theme($mifosx-app-theme);
+@include loans-view-component-theme($mifosx-app-theme);

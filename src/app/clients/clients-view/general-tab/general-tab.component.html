@@ -15,7 +15,7 @@
   <!-- Upcoming Charges -->
 
   <h3>Upcoming Charges</h3>
-  <button mat-raised-button class="f-right" color="primary">Charges Overview</button>
+  <button mat-raised-button class="f-right" color="primary" [routerLink]="['../', 'chargeoverview']">Charges Overview</button>
   <table mat-table [dataSource]="upcomingCharges">
 
     <ng-container matColumnDef="Name">
@@ -133,7 +133,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="openLoansColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: openLoansColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: openLoansColumns;" [routerLink]="['/loans', row.id, 'general']" class="select-row"></tr>
   </table>
 
   <!-- Closed Loan Accounts -->

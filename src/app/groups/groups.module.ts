@@ -14,6 +14,10 @@ import { GroupsViewComponent } from './groups-view/groups-view.component';
 import { GeneralTabComponent } from './groups-view/general-tab/general-tab.component';
 import { NotesTabComponent } from './groups-view/notes-tab/notes-tab.component';
 import { CommitteeTabComponent } from './groups-view/committee-tab/committee-tab.component';
+import { CreateGroupComponent } from './create-group/create-group.component';
+import { DatatableTabsComponent } from './groups-view/datatable-tabs/datatable-tabs.component';
+import { SingleRowComponent } from './groups-view/datatable-tabs/single-row/single-row.component';
+import { MultiRowComponent } from './groups-view/datatable-tabs/multi-row/multi-row.component';
 
 /**
  * Groups Module
@@ -32,7 +36,11 @@ import { CommitteeTabComponent } from './groups-view/committee-tab/committee-tab
     GroupsViewComponent,
     GeneralTabComponent,
     NotesTabComponent,
-    CommitteeTabComponent
+    CommitteeTabComponent,
+    CreateGroupComponent,
+    DatatableTabsComponent,
+    SingleRowComponent,
+    MultiRowComponent
   ],
   providers: [DatePipe]
 })

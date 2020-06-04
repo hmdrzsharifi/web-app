@@ -24,6 +24,7 @@ import { ChargesComponent } from './charges/charges.component';
 import { ViewChargeComponent } from './charges/view-charge/view-charge.component';
 import { FixedDepositProductsComponent } from './fixed-deposit-products/fixed-deposit-products.component';
 import { ProductsMixComponent } from './products-mix/products-mix.component';
+import { ViewProductMixComponent } from './products-mix/view-product-mix/view-product-mix.component';
 import { ManageTaxComponentsComponent } from './manage-tax-components/manage-tax-components.component';
 import { ViewLoanProductComponent } from './loan-products/view-loan-product/view-loan-product.component';
 import { EditLoanProductComponent } from './loan-products/edit-loan-product/edit-loan-product.component';
@@ -72,6 +73,8 @@ import { EditTaxComponentComponent } from './manage-tax-components/edit-tax-comp
 import { EditChargeComponent } from './charges/edit-charge/edit-charge.component';
 import { MatFormFieldModule, MatSelectModule, MatOptionModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ViewTaxGroupComponent } from './manage-tax-groups/view-tax-group/view-tax-group.component';
+import { ShareProductsDividendsComponent } from './share-products/dividends-share-product/dividends.components';
 
 /**
  * Products Module
@@ -107,6 +110,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ViewFloatingRateComponent,
     EditFloatingRateComponent,
     FloatingRatePeriodDialogComponent,
+    ViewProductMixComponent,
     ManageTaxComponentsComponent,
     ViewLoanProductComponent,
     EditLoanProductComponent,
@@ -147,7 +151,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ViewTaxComponentComponent,
     CreateTaxComponentComponent,
     EditTaxComponentComponent,
-    EditChargeComponent
+    EditChargeComponent,
+    ViewTaxGroupComponent,
+    ShareProductsDividendsComponent
   ],
   entryComponents: [
     FloatingRatePeriodDialogComponent

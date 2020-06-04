@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 /** Module Imports */
 import { SharedModule } from '../shared/shared.module';
 import { SystemRoutingModule } from './system-routing.module';
+import { PipesModule } from '../pipes/pipes.module';
 
 /** Component Imports */
 import { CodesComponent } from './codes/codes.component';
@@ -45,6 +46,9 @@ import { EditHookComponent } from './manage-hooks/edit-hook/edit-hook.component'
 import { ViewHookComponent } from './manage-hooks/view-hook/view-hook.component';
 import { CreateHookComponent } from './manage-hooks/create-hook/create-hook.component';
 import { ColumnDialogComponent } from './manage-data-tables/column-dialog/column-dialog.component';
+import { ViewRoleComponent } from './roles-and-permissions/view-role/view-role.component';
+import { EditRoleComponent } from './roles-and-permissions/edit-role/edit-role.component';
+import { EntityToEntityMappingComponent } from './entity-to-entity-mapping/entity-to-entity-mapping.component';
 
 /** Dialog Component Imports */
 import { ReportParameterDialogComponent } from './manage-reports/report-parameter-dialog/report-parameter-dialog.component';
@@ -55,7 +59,8 @@ import { EditSchedulerJobComponent } from './manage-scheduler-jobs/edit-schedule
 @NgModule({
   imports: [
     SystemRoutingModule,
-    SharedModule
+    SharedModule,
+    PipesModule
   ],
   declarations: [
     SystemComponent,
@@ -100,7 +105,10 @@ import { EditSchedulerJobComponent } from './manage-scheduler-jobs/edit-schedule
     AuditTrailsComponent,
     ViewAuditComponent,
     ViewSchedulerJobComponent,
-    EditSchedulerJobComponent
+    EditSchedulerJobComponent,
+    ViewRoleComponent,
+    EditRoleComponent,
+    EntityToEntityMappingComponent
   ],
   entryComponents: [
     ReportParameterDialogComponent,

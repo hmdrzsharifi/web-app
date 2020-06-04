@@ -36,10 +36,13 @@ export class StatusLookupPipe implements PipeTransform {
       'clientStatusTYpe.approved': 'status-approved',
       'clientStatusType.transfer.in.progress': 'status-transfer-progress', // write
       'clientStatusType.transfer.on.hold': 'status-transfer-hold', // write
+      'groupingStatusType.active': 'status-active',
+      'groupingStatusType.pending': 'status-pending',
+      'groupingStatusType.submitted.and.pending.approval': 'status-pending',
+      'groupingStatusType.approved': 'status-approved',
       'smsCampaignStatus.active': 'status-active',
       'smsCampaignStatus.pending': 'status-pending',
-      'smsCampaignStatus.closed': 'status-closed',
-      'groupingStatusType.active': 'status-active'
+      'smsCampaignStatus.closed': 'status-closed'
     };
     return cssClassNameLookup[status];
   }

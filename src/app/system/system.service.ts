@@ -80,11 +80,62 @@ export class SystemService {
   }
 
   /**
+   * @returns {Observable<any>} Fetches Roles and Permissions
+   */
+  getRole(roleId: any): Observable<any> {
+    return this.http.get(`/roles/${roleId}/permissions`);
+  }
+
+  /**
+   * @param role Role.
+   * @param roleId Role ID.
+   * @returns {Observable<any>}
+   */
+  updateRole(role: any, roleId: string): Observable<any> {
+    return this.http.put(`/roles/${roleId}`, role);
+  }
+
+  /**
+   * @param roleID Role ID.
+   * @param roleValueChanges Role value changes.
+   * @returns {Observable<any>}
+   */
+  updateRolePermission(roleId: any, roleValueChanges: any): Observable<any> {
+    return this.http.put(`/roles/${roleId}/permissions`, roleValueChanges);
+  }
+
+  /**
+   * @param roleId Role ID.
+   * @returns {Observable<any>}
+   */
+  deleteRole(roleId: string): Observable<any> {
+    return this.http.delete(`/roles/${roleId}`);
+  }
+
+  /**
    * @param {any} role Role to be created.
    * @returns {Observable<any>}
    */
   createRole(role: any): Observable<any> {
     return this.http.post('/roles', role);
+  }
+
+  /**
+   * @param roleId Role ID.
+   * @returns {Observable<any>}
+   */
+  enableRole(roleId: string): Observable<any> {
+    const httpParams = new HttpParams().set('command', 'enable');
+    return this.http.post(`/roles/${roleId}`, {} , { params: httpParams });
+  }
+
+  /**
+   * @param roleId Role ID.
+   * @returns {Observable<any>}
+   */
+  disableRole(roleId: string): Observable<any> {
+    const httpParams = new HttpParams().set('command', 'disable');
+    return this.http.post(`/roles/${roleId}`, {}, { params: httpParams });
   }
 
   /**
@@ -407,5 +458,88 @@ export class SystemService {
   getAuditTrailSearchTemplate(): Observable<any> {
     return this.http.get('/audits/searchtemplate');
   }
+
+  /**
+   * @returns {Observable<any>} Fetches Mapping Data.
+   */
+  getEntityMappings(): Observable<any> {
+    return this.http.get('/entitytoentitymapping');
+  }
+
+  /**
+   * @param mappingId Mapping Id.
+   * @param fromId From Entity ID.
+   * @param toId  To Entity ID.
+   * @returns {Observable<any>} fetches the list of mappings for particular mapping type
+   */
+  getEntitytoEntityData(mappingId: number, fromId: number, toId: number): Observable<any> {
+    return this.http.get(`/entitytoentitymapping/${mappingId}/${fromId}/${toId}`);
+  }
+
+  /**
+   * Get particular Map Data
+   * @param mapId Mapping Id
+   */
+  getMapIdData(mapId: number): Observable<any> {
+    return this.http.get(`/entitytoentitymapping/${mapId}`);
+  }
+
+
+  /**
+   * Creates a new mapping
+   * @param {any} mapType Map id to be created.
+   * @param {any} mapData Map data to be added
+   * @returns {Observable<any>} resolved data
+   */
+  createMapping(mapType: any, mapData: any): Observable<any> {
+    return this.http.post(`/entitytoentitymapping/${mapType}`, mapData);
+  }
+
+  /**
+   * Edit a mapping
+   * @param {any} mapType Map id to be edited.
+   * @param {any} mapData Map data to be added
+   * @returns {Observable<any>} resolved data
+   */
+  editMapping(mapId: any, mapData: any): Observable<any> {
+    return this.http.put(`/entitytoentitymapping/${mapId}`, mapData);
+  }
+
+  /**
+   * Delete the Map Id
+   * @param mapId Map Id
+   */
+  deleteMapping(mapId: any): Observable<any> {
+    return this.http.delete(`/entitytoentitymapping/${mapId}`);
+  }
+
+  /**
+   * @returns {Observable<any>} Offices data
+   */
+  getOffices(): Observable<any> {
+    return this.http.get('/offices');
+  }
+
+  /**
+   * @returns {Observable<any>} Loan products data.
+   */
+  getLoanProducts(): Observable<any> {
+    return this.http.get('/loanproducts');
+  }
+
+  /**
+   * @returns {Observable<any>} Saving products data
+   */
+  getSavingProducts(): Observable<any> {
+    return this.http.get('/savingsproducts');
+  }
+
+  /**
+   * @returns {Observable<any>} Charges data
+   */
+  getCharges(): Observable<any> {
+    return this.http.get('/charges');
+  }
+
 
 }

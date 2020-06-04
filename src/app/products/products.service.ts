@@ -90,6 +90,10 @@ export class ProductsService {
     return this.http.put(`/products/share/${shareProductId}`, shareProduct);
   }
 
+  getDividends(shareProductId: string): Observable<any> {
+    return this.http.get(`/shareproduct/${shareProductId}/dividend`);
+  }
+
   /**
    * @returns {Observable<any>} Recurring deposit products data
    */
@@ -194,6 +198,14 @@ export class ProductsService {
   }
 
   /**
+   * @param {string} taxGroupId Tax Component ID of Tax Component.
+   * @returns {Observable<any>} Tax Component.
+   */
+  getTaxGroup(taxGroupId: string): Observable<any> {
+    return this.http.get(`/taxes/group/${taxGroupId}`);
+  }
+
+  /**
    * @returns {Observable<any>} Product mixes data
    */
   getProductMixes(): Observable<any> {
@@ -234,4 +246,11 @@ export class ProductsService {
     return this.http.put(`/floatingrates/${floatingRateId}`, floatingRate);
   }
 
+  /**
+   * @param {string} productId Id of the product.
+   * @returns {Observable<any>} Product.
+   */
+  getProductMix(productId: string): Observable<any> {
+    return this.http.get(`/loanproducts/${productId}/productmix`);
+  }
 }

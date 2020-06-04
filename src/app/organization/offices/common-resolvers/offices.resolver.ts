@@ -6,13 +6,13 @@ import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 
 /** Custom Services */
-import { OrganizationService } from '../organization.service';
+import { OrganizationService } from '../../organization.service';
 
 /**
- * SMS Campaigns data resolver.
+ * Manage Offices data resolver.
  */
 @Injectable()
-export class SmsCampaignsResolver implements Resolve<Object> {
+export class OfficesResolver implements Resolve<Object> {
 
   /**
    * @param {OrganizationService} organizationService Organization service.
@@ -20,11 +20,11 @@ export class SmsCampaignsResolver implements Resolve<Object> {
   constructor(private organizationService: OrganizationService) {}
 
   /**
-   * Returns the SMS Campaigns data.
+   * Returns the offices data.
    * @returns {Observable<any>}
    */
   resolve(): Observable<any> {
-    return this.organizationService.getSmsCampaigns();
+    return this.organizationService.getOffices();
   }
 
 }
