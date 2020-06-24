@@ -161,9 +161,29 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'loans',
-    data: { title: extract('Loans'), breadcrumb: 'loans' },
-    loadChildren: '../loans/loans.module#LoansModule'
+    path: 'clients',
+    data: { title: extract('Clients'), breadcrumb: 'Clients', routeParamBreadcrumb: false },
+    children: [
+      {
+        path: ':clientId',
+        data: { title: extract('Clients View'), routeParamBreadcrumb: 'clientId' },
+        children: [
+          {
+            path: 'loans',
+            data: { title: extract('Loans'), breadcrumb: 'loans', routeParamBreadcrumb: false },
+            loadChildren: '../loans/loans.module#LoansModule'
+          },
+          {
+            path: 'savingsaccounts',
+            loadChildren: '../savings/savings.module#SavingsModule'
+          },
+          {
+            path: 'sharesaccounts',
+            loadChildren: '../shares/shares.module#SharesModule'
+          },
+        ]
+      }
+    ]
   }
   ])
 ];

@@ -167,6 +167,14 @@ export class OrganizationService {
   }
 
   /**
+   * @param {any[]} currencies
+   * @returns {Observable<any>} Currencies data
+   */
+  updateCurrencies(currencies: any[]): Observable<any> {
+    return this.http.put('/currencies', {currencies});
+  }
+
+  /**
    * @returns {Observable<any>} SMS Campaigns data
    */
   getSmsCampaigns(): Observable<any> {
@@ -249,7 +257,14 @@ export class OrganizationService {
   }
 
   /**
-   * Get Cashier data.
+   * @param {string} tellerId Teller ID of teller.
+   * @returns {Observable<any>} Cashier data.
+   */
+  getCashiers(tellerId: string): Observable<any> {
+    return this.http.get(`/tellers/${tellerId}/cashiers`);
+  }
+
+  /**
    * @param {string} tellerId Teller ID of teller.
    * @param {string} cashierId Cashier ID of cashier
    * @returns {Observable<any>} Cashier data.
@@ -405,6 +420,30 @@ export class OrganizationService {
    */
   updateTeller(tellerId: string, teller: any): Observable<any> {
     return this.http.put(`/tellers/${tellerId}`, teller);
+  }
+
+  /**
+   * @returns {Observable<any>} Funds data
+   */
+  getFunds(): Observable<any> {
+    return this.http.get('/funds');
+  }
+
+  /**
+   * @param {any} fund Fund to be created.
+   * @returns {Observable<any>}
+   */
+  createFund(fund: any): Observable<any> {
+    return this.http.post('/funds', fund);
+  }
+
+  /**
+   * @param {string} fundId Fund Id
+   * @param {any} fundData Fund Data
+   * @returns {Observable<any>}
+   */
+  editFund(fundId: string, fundData: any): Observable<any> {
+    return this.http.put(`/funds/${fundId}`, fundData);
   }
 
 }

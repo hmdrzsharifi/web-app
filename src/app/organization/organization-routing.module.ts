@@ -39,6 +39,9 @@ import { ViewOfficeComponent } from './offices/view-office/view-office.component
 import { GeneralTabComponent } from './offices/view-office/general-tab/general-tab.component';
 import { DatatableTabsComponent } from './offices/view-office/datatable-tabs/datatable-tabs.component';
 import { ViewCampaignComponent } from './sms-campaigns/view-campaign/view-campaign.component';
+import { ManageFundsComponent } from './manage-funds/manage-funds.component';
+import { ManageCurrenciesComponent } from './currencies/manage-currencies/manage-currencies.component';
+import { CashiersComponent } from './tellers/cashiers/cashiers.component';
 
 /** Custom Resolvers */
 import { LoanProvisioningCriteriaResolver } from './loan-provisioning-criteria/loan-provisioning-criteria.resolver';
@@ -50,8 +53,8 @@ import { CurrenciesResolver } from './currencies/currencies.resolver';
 import { SmsCampaignsResolver } from './sms-campaigns/common-resolvers/sms-campaigns.resolver';
 import { AdhocQueriesResolver } from './adhoc-query/adhoc-queries.resolver';
 import { AdhocQueryResolver } from './adhoc-query/adhoc-query.resolver';
-import { TellersResolver } from './tellers/tellers.resolver';
-import { TellerResolver } from './tellers/teller.resolver';
+import { TellersResolver } from './tellers/common-resolvers/tellers.resolver';
+import { TellerResolver } from './tellers/common-resolvers/teller.resolver';
 import { PaymentTypesResolver } from './payment-types/payment-types.resolver';
 import { PaymentTypeResolver } from './payment-types/payment-type.resolver';
 import { PasswordPreferencesTemplateResolver } from './password-preferences/password-preferences-template.resolver';
@@ -62,12 +65,14 @@ import { EditOfficeComponent } from './offices/edit-office/edit-office.component
 import { AdhocQueryTemplateResolver } from './adhoc-query/adhoc-query-template.resolver';
 import { ViewLoanProvisioningCriteriaComponent } from './loan-provisioning-criteria/view-loan-provisioning-criteria/view-loan-provisioning-criteria.component';
 import { LoanProvisioningCriteriasResolver } from './loan-provisioning-criteria/loan-provisioning-criterias.resolver';
-import { CashierResolver } from './tellers/cashier.resolver';
+import { CashierResolver } from './tellers/common-resolvers/cashier.resolver';
+import { CashiersResolver } from './tellers/common-resolvers/cashiers.resolver';
 import { HolidayResolver } from './holidays/holiday.resolver';
 import { OfficeResolver } from './offices/common-resolvers/office.resolver';
 import { OfficeDatatableResolver } from './offices/common-resolvers/office-datatable.resolver';
 import { OfficeDatatablesResolver } from './offices/common-resolvers/office-datatables.resolver';
 import { SmsCampaignResolver } from './sms-campaigns/common-resolvers/sms-campaign.resolver';
+import { ManageFundsResolver } from './manage-funds/manage-funds.resolver';
 
 /** Organization Routes */
 const routes: Routes = [
@@ -216,11 +221,21 @@ const routes: Routes = [
         },
         {
           path: 'currencies',
-          component: CurrenciesComponent,
           data: { title: extract('Currency Configuration'), breadcrumb: 'Currency Configuration' },
           resolve: {
             currencies: CurrenciesResolver
-          }
+          },
+          children: [
+            {
+              path: '',
+              component: CurrenciesComponent,
+            },
+            {
+              path: 'manage',
+              data: { title: extract('Manage Currencies'), breadcrumb: 'Manage Currencies' },
+              component: ManageCurrenciesComponent
+            }
+          ]
         },
         {
           path: 'sms-campaigns',
@@ -316,6 +331,13 @@ const routes: Routes = [
                   data: { title: extract('View Cashiers'), breadcrumb: 'View Cashiers', routeParamBreadcrumb: false },
                   children: [
                     {
+                      path: '',
+                      component: CashiersComponent,
+                      resolve: {
+                        cashiersData: CashiersResolver
+                      }
+                    },
+                    {
                       path: ':id',
                       component: ViewCashierComponent,
                       data: { title: extract('View Cashier'), breadcrumb: 'View Cashier', routeParamBreadcrumb: 'id' },
@@ -386,6 +408,14 @@ const routes: Routes = [
           }
         },
         {
+          path: 'manage-funds',
+          component: ManageFundsComponent,
+          data: { title: extract('Manage Funds Days'), breadcrumb: 'Manage Funds' },
+          resolve: {
+            funds: ManageFundsResolver
+          }
+        },
+        {
           path: 'bulk-import',
           loadChildren: '../bulk-import/bulk-import.module#BulkImportModule'
         },
@@ -450,10 +480,12 @@ const routes: Routes = [
     AdhocQueryTemplateResolver,
     LoanProvisioningCriteriasResolver,
     CashierResolver,
+    CashiersResolver,
     HolidayResolver,
     OfficeResolver,
     OfficeDatatableResolver,
-    OfficeDatatablesResolver
+    OfficeDatatablesResolver,
+    ManageFundsResolver
   ]
 })
 export class OrganizationRoutingModule { }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoansService } from '../loans.service';
 
 // Custom Imports
@@ -13,6 +13,7 @@ import { ButtonConfig } from './button-config';
 export class LoansViewComponent implements OnInit {
 
   loanDetailsData: any;
+  loanDatatables: any;
   recalculateInterest: any;
   status: string;
   buttons: {
@@ -26,12 +27,15 @@ export class LoansViewComponent implements OnInit {
       taskPermissionName: string
     }[]
   };
+  loanId: number;
 
-  constructor(private route: ActivatedRoute) {
-    this.route.data.subscribe((data: { loanDetailsData: any, }) => {
+  constructor(private route: ActivatedRoute,
+    private router: Router) {
+    this.route.data.subscribe((data: { loanDetailsData: any, loanDatatables: any}) => {
       this.loanDetailsData = data.loanDetailsData;
-      console.log('loandata:: ', this.loanDetailsData);
+      this.loanDatatables = data.loanDatatables;
     });
+    this.loanId = this.route.snapshot.params['loanId'];
   }
 
   ngOnInit() {
@@ -39,7 +43,6 @@ export class LoansViewComponent implements OnInit {
     this.recalculateInterest = this.loanDetailsData.recalculateInterest || true;
     this.status = this.loanDetailsData.status.value;
 
-    console.log('status: ', this.status);
     // Defines the buttons based on the status of the loan account
     if (this.status === 'Submitted and pending approval') {
       this.buttons = ButtonConfig['Submitted and pending approval'];
@@ -102,10 +105,14 @@ export class LoansViewComponent implements OnInit {
     } else if (this.status === 'Overpaid') {
       this.buttons = ButtonConfig['Overpaid'];
     } else if (this.status === 'Closed (written off)') {
-      this.buttons = ButtonConfig['Closed (written off)'];
+      this.buttons = ButtonConfig['ClosedWrittenOff'];
     }
-    console.log('this.buttons: ', this.buttons);
 
+  }
+
+  loanAction(button: string) {
+    button = button.replace(/\s/g, '-').toLowerCase();
+    this.router.navigate([button], { relativeTo: this.route });
   }
 
 }

@@ -42,6 +42,9 @@ import { DatatableTabsComponent } from './offices/view-office/datatable-tabs/dat
 import { SingleRowComponent } from './offices/view-office/datatable-tabs/single-row/single-row.component';
 import { MultiRowComponent } from './offices/view-office/datatable-tabs/multi-row/multi-row.component';
 import { ViewCampaignComponent } from './sms-campaigns/view-campaign/view-campaign.component';
+import { ManageFundsComponent } from './manage-funds/manage-funds.component';
+import { ManageCurrenciesComponent } from './currencies/manage-currencies/manage-currencies.component';
+import { CashiersComponent } from './tellers/cashiers/cashiers.component';
 
 /**
  * Organization Module
@@ -89,7 +92,10 @@ import { ViewCampaignComponent } from './sms-campaigns/view-campaign/view-campai
     DatatableTabsComponent,
     SingleRowComponent,
     MultiRowComponent,
-    ViewCampaignComponent
+    ViewCampaignComponent,
+    ManageFundsComponent,
+    ManageCurrenciesComponent,
+    CashiersComponent
   ]
 })
 export class OrganizationModule { }
